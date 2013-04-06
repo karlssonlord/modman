@@ -22,7 +22,7 @@ else
    exit 1
 fi
 
-$CMD $HOME/bin/modman https://raw.github.com/colinmollenhour/modman/master/modman
+$CMD $HOME/bin/modman https://raw.github.com/karlssonlord/modman/master/modman
 
 chmod +x $HOME/bin/modman
 
