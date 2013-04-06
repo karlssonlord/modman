@@ -863,7 +863,15 @@ case "$action" in
       svn checkout "$src" $@ "$module" && success=1
     elif [ "$action" = "clone" ]; then
       verb='cloned'
-      git clone --recursive "$src" $@ "$module" && success=1
+      if [ -d "$mmroot/.git" ]; then
+        cd $mmroot
+        git submodule add "$src" $@ ".modman/$module" &&
+        git submodule update --init --recursive &&
+        success=1
+        cd $mm
+      else
+        git clone --recursive "$src" $@ "$module" && success=1
+      fi
     elif [ "$action" = "hgclone" ]; then
       verb='cloned'
       hg clone "$src" $@ "$module" && success=1
